@@ -1,0 +1,15 @@
+name: commit-a-day
+on:
+  schedule:
+    # (see https://crontab.guru) -> "At 22:35 UTC on every day-of-week from Monday through Friday."
+    - cron: '35 22 * * 1-5'
+jobs:
+  commit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: commit
+        run: |
+          pwd
+          echo ${{ github.workspace }}
+          bash "${{ github.workspace }}/run.sh"
